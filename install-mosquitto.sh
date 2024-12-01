@@ -3,7 +3,7 @@
 # wget -O - https://raw.githubusercontent.com/JimJinn/Linux-public/refs/heads/main/install-mosquitto.sh | bash
 
 # Check if mosquitto is installed
-echo "Version 1.17"
+echo "Version 0.18"
 if ! dpkg -l | grep -q mosquitto; then
     echo "Mosquitto is not installed. Installing..."
     sudo apt install -y mosquitto mosquitto-clients
@@ -27,5 +27,5 @@ fi
     fi
 
     echo "MQTT_SERVER_IP=$mqtt_server" | sudo tee $config > /dev/null
-    echo "NOTIFY_TOPIC=$notify_topic" | sudo tee $config >> /dev/null
+    echo "NOTIFY_TOPIC=$notify_topic" | sudo tee -a $config > /dev/null
     echo "Default MQTT server IP address and topic are written to $config, modify as required"
