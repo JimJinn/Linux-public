@@ -3,15 +3,12 @@
 # wget -O - https://raw.githubusercontent.com/JimJinn/Linux-public/refs/heads/main/install-mosquitto.sh | bash
 
 # Check if mosquitto is installed
-echo "Version 1.13"
+echo "Version 1.14"
 if ! dpkg -l | grep -q mosquitto; then
     echo "Mosquitto is not installed. Installing..."
     sudo apt install -y mosquitto mosquitto-clients
 
 
-    echo "MQTT_SERVER_IP=$mqtt_server" > $config
-    echo "NOTIFY_TOPIC=$notify_topic" >> $config
-    echo "Default MQTT server IP address and topic are written to $config, modify as required"
 
     # Publish a test message
     mosquitto_pub -h $mqtt_server -t "$notify_topic" -m "Mosquitto is installed on $(hostname)"
@@ -28,3 +25,7 @@ fi
         # sudo mkdir -p "/etc/notificator/notificator.conf"
         sudo mkdir -p "$(dirname "$config")"
     fi
+
+    echo "MQTT_SERVER_IP=$mqtt_server" > $config
+    echo "NOTIFY_TOPIC=$notify_topic" >> $config
+    echo "Default MQTT server IP address and topic are written to $config, modify as required"
