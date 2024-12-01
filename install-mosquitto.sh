@@ -12,9 +12,10 @@ if ! dpkg -l | grep -q mosquitto; then
     mqtt_server="192.168.9.20"
     notify_topic="telegram/alex"
 
-    if [ ! -d "$(dirname "$config")" ]; then
+    # if [ ! -d "$(dirname "$config")" ]; then
+    echo "Creating config directory..."
         sudo mkdir -p "$(dirname "$config")"
-    fi
+    # fi
 
     echo "MQTT_SERVER_IP=$mqtt_server" > $config
     echo "NOTIFY_TOPIC=$notify_topic" >> $config
