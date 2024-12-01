@@ -10,12 +10,10 @@ else
     echo "Mosquitto is already installed."
 fi
 
-# Request user to input Mosquitto server address
-read -p "Enter Mosquitto server address (default: 192.168.9.20): " mqtt_server
-mqtt_server=${mqtt_server:-192.168.9.20}
 
 # Save the server address to a file for future use
-echo "MQTT_SERVER_IP=$mqtt_server" > ~/.mosquitto_server
+echo "MQTT_SERVER_IP=192.168.9.20" > ~/.mosquitto_server
+echo "Default MQTT server IP address is written to ~/.mosquitto_server, modify as required"
 
 # Publish a test message
 #mosquitto_pub -h <MQTT_SERVER_IP> -t "homeassistant/sensor/disk_health" -m "Disk: Healthy"
