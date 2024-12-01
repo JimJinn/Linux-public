@@ -19,6 +19,7 @@ fi
     config="/etc/notificator/notificator.conf"
     mqtt_server="192.168.9.20"
     notify_topic="telegram/alex"
+    max_messages=5
 
     if [ ! -d "$(dirname "$config")" ]; then
         echo "Creating config directory [$config]"
