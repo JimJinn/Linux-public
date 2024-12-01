@@ -12,14 +12,6 @@ if ! dpkg -l | grep -q mosquitto; then
     mqtt_server="192.168.9.20"
     notify_topic="telegram/alex"
 
-    # if [ ! -d "$(dirname "$config")" ]; then
-    echo "Creating config directory..."
-        sudo mkdir -p "$(dirname "$config")"
-    # fi
-
-    echo "MQTT_SERVER_IP=$mqtt_server" > $config
-    echo "NOTIFY_TOPIC=$notify_topic" >> $config
-    echo "Default MQTT server IP address and topic are written to ~/.notificator_config, modify as required"
 
     # Publish a test message
     mosquitto_pub -h $mqtt_server -t "$notify_topic" -m "Mosquitto is installed on $(hostname)"
@@ -27,3 +19,11 @@ else
     echo "Mosquitto is already installed."
 fi
 
+    if [ ! -d "$(dirname "$config")" ]; then
+        echo "Creating config directory..."
+        sudo mkdir -p "$(dirname "$config")"
+    fi
+
+    echo "MQTT_SERVER_IP=$mqtt_server" > $config
+    echo "NOTIFY_TOPIC=$notify_topic" >> $config
+    echo "Default MQTT server IP address and topic are written to ~/.notificator_config, modify as required"
